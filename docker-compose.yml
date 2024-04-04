@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+    mysql:
+        image: mysql:8.3.0
+        environment:
+            MYSQL_DATABASE: exam-webservices
+            MYSQL_USER: user
+            MYSQL_PASSWORD: user
+            MYSQL_ROOT_PASSWORD: root
+        volumes:
+            - db:/var/lib/mysql
+        networks:
+            - exam-webservices
+
+    phpmyadmin:
+        image: phpmyadmin:5.2.1
+        ports:
+            - 8080:80
+        environment:
+            PMA_HOST: mysql
+        networks:
+            - exam-webservices
+        depends_on:
+            - mysql
+
+    api:
+        image: exam-webservices:1.0.0
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - 3000:80
+        volumes:
+            - ./src:/app/src
+        networks:
+            - exam-webservices
+        depends_on:
+            - mysql
+
+volumes:
+    db:
+
+networks:
+    exam-webservices:
+        name: exam-webservices
+        driver: bridge
