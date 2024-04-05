@@ -9,6 +9,7 @@ services:
             MYSQL_PASSWORD: user
             MYSQL_ROOT_PASSWORD: root
         volumes:
+            - ./src/db/db.sql:/docker-entrypoint-initdb.d/db.sql
             - db:/var/lib/mysql
         networks:
             - exam-webservices
