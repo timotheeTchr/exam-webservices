@@ -1,4 +1,4 @@
-import { Router, response } from "express";
+import { Router } from "express";
 
 export default class DefaultRouter {
     router = null;
