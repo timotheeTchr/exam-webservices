@@ -1,5 +1,5 @@
 import DefaultController from "../../default/controller/default.controller.js";
-import { UserModel } from "../model/user.model.js";
+import { UserModel } from "../../../models/models.js";
 
 export default class UserController extends DefaultController {
     constructor() {
