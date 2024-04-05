@@ -1,4 +1,3 @@
-import { response } from "express";
 import DefaultRouter from "../../default/router/default.router.js";
 import UserController from "../controller/user.controller.js";
 

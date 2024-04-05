@@ -33,8 +33,6 @@ services:
         restart: always
         ports:
             - 3000:80
-        volumes:
-            - ./src:/app/src
         networks:
             - exam-webservices
         depends_on:
