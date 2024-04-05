@@ -6,23 +6,76 @@ export default class DefaultController {
     }
 
     async getAll() {
-        const users = await this.Model.findAll();
+        const data = await this.Model.findAll();
 
-        if (users.length > 0) {
+        if (data.length > 0) {
             return {
                 code: 200,
-                data: users,
+                result: {
+                    data: data,
+                },
+            };
+        } else {
+            return {
+                code: 204,
+                result: {
+                    msg: "No data found !",
+                },
             };
         }
-        // this.Model.findAll()
-        //     .then((data) => res.json(data))
-        //     .catch((err) => {
-        //         res.status(500).send({ message: err.message || "Une erreur s'est produite lors de la récupération des données." });
-        //     });
-        // User.findAll()
-        //     .then((data) => res.json(data))
-        //     .catch((err) => {
-        //         res.status(500).send({ message: err.message || "Une erreur s'est produite lors de la récupération des données." });
-        //     });
+    }
+
+    async getById(_id) {
+        const data = await this.Model.findOne({ where: { id: _id } });
+
+        if (data !== null) {
+            return {
+                code: 200,
+                result: {
+                    data: data,
+                },
+            };
+        } else {
+            return {
+                code: 204,
+                result: {
+                    msg: "No data found !",
+                },
+            };
+        }
+    }
+
+    async create(_body) {
+        const data = await this.Model.create(_body);
+
+        return {
+            code: 201,
+            result: {
+                data: data,
+                msg: "User created successfully",
+            },
+        };
+    }
+
+    async update(_id, _body) {
+        const data = await this.Model.update(_body, { where: { id: _id } });
+
+        return {
+            code: 200,
+            result: {
+                msg: "User updated successfully !",
+            },
+        };
+    }
+
+    async delete(_id) {
+        const data = await this.Model.destroy({ where: { id: _id } });
+
+        return {
+            code: 200,
+            result: {
+                msg: "User has been deleted !",
+            },
+        };
     }
 }
