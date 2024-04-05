@@ -1,6 +1,6 @@
 import express from "express";
 import router from "./services/routes.js";
-const app = express();
+export const app = express();
 
 const URL = "http://localhost";
 const PORT = 80;
@@ -23,5 +23,4 @@ app.use("/api", router());
 app.listen(PORT, () => {
     console.log(`Le serveur est démarré sur le port ${PORT}.`);
     console.log(`URL : ${URL}:${PORT}`);
-    console.log(`URL de la documentation : ${URL}:${PORT}/docs`);
 });

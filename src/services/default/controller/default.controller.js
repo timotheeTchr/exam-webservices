@@ -52,7 +52,7 @@ export default class DefaultController {
             code: 201,
             result: {
                 data: data,
-                msg: "User created successfully",
+                msg: this.Model.name + " created successfully",
             },
         };
     }
@@ -63,7 +63,7 @@ export default class DefaultController {
         return {
             code: 200,
             result: {
-                msg: "User updated successfully !",
+                msg: this.Model.name + " updated successfully !",
             },
         };
     }
@@ -74,7 +74,7 @@ export default class DefaultController {
         return {
             code: 200,
             result: {
-                msg: "User has been deleted !",
+                msg: this.Model.name + " has been deleted !",
             },
         };
     }
